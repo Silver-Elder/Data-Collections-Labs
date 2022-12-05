@@ -17,6 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        URLCache.shared.memoryCapacity = 25_000_000
+        URLCache.shared.diskCapacity = 50_000_000
+            //I don't get how this enables the app to download and retain the images for my search results that I pulled from the web.
+        
         return true
     }
 

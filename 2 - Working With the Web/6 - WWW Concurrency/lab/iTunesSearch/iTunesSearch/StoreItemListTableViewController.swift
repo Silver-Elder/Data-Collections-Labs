@@ -9,8 +9,9 @@ class StoreItemListTableViewController: UITableViewController {
     
     // add item controller property
     
-    var items = [String]()
+    var items = [StoreItem]()
     var imageLoadTasks: [IndexPath: Task<Void, Never>] = [:]
+    let storeItemController = StoreItemController()
     
     let queryOptions = ["movie", "music", "software", "ebook"]
     
@@ -29,9 +30,16 @@ class StoreItemListTableViewController: UITableViewController {
         
         if !searchTerm.isEmpty {
             
-            // set up query dictionary
+            let queryDictionary = ["media": mediaType, "term": searchTerm, "lang": "en_us", "limit": "15"]
             
-            // use the item controller to fetch items
+            Task {
+                do {
+                    self.items = try await storeItemController.fetchItems(matching: queryDictionary)
+                    tableView.reloadData()
+                } catch {
+                    print(error)
+                }
+            }
             // if successful, use the main queue to set self.items and reload the table view
             // otherwise, print an error to the console
         }
@@ -41,17 +49,25 @@ class StoreItemListTableViewController: UITableViewController {
         
         let item = items[indexPath.row]
         
-        // set cell.name to the item's name
+        cell.name = item.trackName
         
-        // set cell.artist to the item's artist
+        cell.artist = item.artistName
         
-        // set cell.artworkImage to nil
+        // Book Prompt: Initialize a network task to fetch the item's artwork keeping track of the task in imageLoadTasks so they can be cancelled if the cell will not be shown after the task completes.
         
-        // initialize a network task to fetch the item's artwork keeping track of the task
-        // in imageLoadTasks so they can be cancelled if the cell will not be shown after
-        // the task completes.
-        //
         // if successful, set the cell.artworkImage using the returned image
+        
+        imageLoadTasks[indexPath] = Task { // This sets my imageLoadTasks value, although I don't understand what it's doing
+            do {
+                cell.artworkImage = try await storeItemController.fetchImage(from: item.artworkURL)
+                imageLoadTasks[indexPath] = nil
+                // Once this task is complete, this line of code removes it from the list of pending tasks
+            } catch {
+                cell.artworkImage = nil
+            }
+        }
+        
+        
     }
     
     @IBAction func filterOptionUpdated(_ sender: UISegmentedControl) {
@@ -96,3 +112,4 @@ extension StoreItemListTableViewController: UISearchBarDelegate {
     }
 }
 
+// Pick up on p.452 (Though you may have already completed those tasks, or done the same work sifferently than the book would've. Review the page to learn how they comleted this step)
