@@ -31,6 +31,9 @@ Task {
     }
 }
 //----------------end-student--------------
+
+/*
+
 //----------------begin-teacher------------
 struct StoreItem: Codable {
     let name: String
@@ -118,6 +121,8 @@ Task {
     }
 }
 //----------------end-teacher--------------
+ 
+ */
 /*:
 
  _Copyright © 2021 Apple Inc._

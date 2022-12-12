@@ -64,11 +64,11 @@ class BookTableViewController: UITableViewController {
             tableView.reloadRows(at: [selectedIndexPath], with: .none)
 
         } else {
-            books.append(book)
+            ///books.append(book)
             /// ^^^ Origional ||| vvv Emoji
-//            let newIndexPath = IndexPath(row: books.count, section: 0)
-//            books.append(book)
-//            tableView.insertRows(at: [newIndexPath], with: .automatic)
+            let newIndexPath = IndexPath(row: books.count, section: 0)
+            books.append(book)
+            tableView.insertRows(at: [newIndexPath], with: .automatic)
         }
     }
     

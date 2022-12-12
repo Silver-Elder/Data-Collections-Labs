@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "54C60433-4C81-449B-8224-21C15F6D251F"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5704D7F5-9A39-4D13-A716-D6C1341A0532"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Restaurant/CategoritesTableViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5704D7F5-9A39-4D13-A716-D6C1341A0532 - 92c08f984d612c91"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in Restaurant.CategoritesTableViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "Restaurant"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sterlingjenkins/Desktop/MobDev/Tables%20&amp;%20Persistence%20-%20student/2%20-%20Working%20With%20the%20Web/Guided%20Project%20-%20Restaurant/Restaurant/Restaurant/CategoritesTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "5704D7F5-9A39-4D13-A716-D6C1341A0532 - 6db35e27d7b1c573"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async -&gt; () in Restaurant.CategoritesTableViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "Restaurant"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sterlingjenkins/Desktop/MobDev/Tables%20&amp;%20Persistence%20-%20student/2%20-%20Working%20With%20the%20Web/Guided%20Project%20-%20Restaurant/Restaurant/Restaurant/CategoritesTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "5704D7F5-9A39-4D13-A716-D6C1341A0532 - 4abfdde233080897"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in Restaurant.CategoritesTableViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "Restaurant"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sterlingjenkins/Desktop/MobDev/Tables%20&amp;%20Persistence%20-%20student/2%20-%20Working%20With%20the%20Web/Guided%20Project%20-%20Restaurant/Restaurant/Restaurant/CategoritesTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  uuid = "5704D7F5-9A39-4D13-A716-D6C1341A0532 - eeb144c1161b7694"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #1 @Sendable () async -&gt; () in Restaurant.CategoritesTableViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "Restaurant"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sterlingjenkins/Desktop/MobDev/Tables%20&amp;%20Persistence%20-%20student/2%20-%20Working%20With%20the%20Web/Guided%20Project%20-%20Restaurant/Restaurant/Restaurant/CategoritesTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "60">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

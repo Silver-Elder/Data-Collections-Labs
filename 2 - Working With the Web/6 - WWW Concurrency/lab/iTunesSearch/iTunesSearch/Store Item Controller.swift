@@ -9,16 +9,14 @@ import Foundation
 import UIKit
 
 class StoreItemController {
-    enum StoreItemError: Error, LocalizedError {
+    enum storeItemError: Error, LocalizedError {
+        case itemNotFound
         case imageDataMissing
     }
     
     func fetchItems(matching query: [String : String]) async throws -> [StoreItem] {
-        var iTunesSearchURL = URLComponents(string: "https://itunes.apple.com/search")!
         
-        enum searchError: Error, LocalizedError {
-            case itemNotFound
-        }
+        var iTunesSearchURL = URLComponents(string: "https://itunes.apple.com/search")!
         
         iTunesSearchURL.queryItems = query.map { URLQueryItem(name: $0.key, value: $0.value)
         }
@@ -26,7 +24,7 @@ class StoreItemController {
         let (data, response) = try await URLSession.shared.data(from: iTunesSearchURL.url!)
         
         guard let httpsResponse = response as? HTTPURLResponse, httpsResponse.statusCode == 200 else {
-            throw searchError.itemNotFound
+            throw storeItemError.itemNotFound
         }
         
         let decoder = JSONDecoder()
@@ -43,11 +41,11 @@ class StoreItemController {
     
         guard let httpResponse = response as? HTTPURLResponse,
               httpResponse.statusCode == 200 else {
-            throw StoreItemError.imageDataMissing
+            throw storeItemError.imageDataMissing
         }
     
         guard let image = UIImage(data: data) else {
-            throw StoreItemError.imageDataMissing
+            throw storeItemError.imageDataMissing
         }
     
         return image
