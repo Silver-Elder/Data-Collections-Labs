@@ -16,6 +16,7 @@ class CategoritesTableViewController: UITableViewController {
             Task {
                 do {
                     categoryList = try await APIController().fetchCategories()
+                    tableView.reloadData()
                 } catch {
                     print(error)
                 }
@@ -31,7 +32,7 @@ class CategoritesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return categoryList.categories.count
     }
 
 
@@ -39,11 +40,13 @@ class CategoritesTableViewController: UITableViewController {
         
         let category = categoryList.categories[indexPath.row]
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Category Type", for: indexPath)
 
         var configuration = cell.defaultContentConfiguration()
         
         configuration.text = category.description
+        
+        cell.contentConfiguration = configuration
 
         return cell
     }
@@ -94,5 +97,14 @@ class CategoritesTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    
+    @IBSegueAction func toMenu(_ coder: NSCoder, sender: Any?) -> MenuTableViewController? {
+        
+        guard  let indexPath = tableView.indexPathForSelectedRow else { return nil }
+    
+        let category = categoryList.categories[indexPath.row]
+        
+        return MenuTableViewController(coder: coder, category: category)
+    }
 }

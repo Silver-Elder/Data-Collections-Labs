@@ -3,6 +3,8 @@
 //  BillManager
 //
 
+// Pick up p.767
+
 import UIKit
 
 class BillDetailTableViewController: UITableViewController, UITextFieldDelegate {
@@ -53,7 +55,7 @@ class BillDetailTableViewController: UITableViewController, UITextFieldDelegate 
         if let bill = bill {
             title = "Edit Bill"
             payeeTextField.text = bill.payee
-            amountTextField.text = String(format: "%@", arguments: [(bill.amount ?? 0).formatted(.number.precision(.fractionLength(2)))])
+            amountTextField.text = String(format: "%@", arguments: [(bill.amountDue ?? 0).formatted(.number.precision(.fractionLength(2)))])
             if let dueDate = bill.dueDate {
                 dueDatePicker.date = dueDate
             }
@@ -200,21 +202,37 @@ class BillDetailTableViewController: UITableViewController, UITextFieldDelegate 
         }
     }
 
+    func presentNeedAuthorizationAlert() {
+        let alert = UIAlertController(title: "Authorization Needed", message: "We'd love to send you notifications, but we'll need you to granted us permission to send you those. Please go to the iOS Settings app and grant us notification permissions.", preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "Okay", style: .default, handler: nil)
+        
+        alert.addAction(okAction)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         var bill = self.bill ?? Database.shared.addBill()
         
         bill.payee = payeeTextField.text
-        bill.amount = Double(amountTextField.text ?? "0") ?? 0.00
+        bill.amountDue = Double(amountTextField.text ?? "0") ?? 0.00
         bill.dueDate = dueDatePicker.date
         bill.paidDate = paidDate
         
         if remindSwitch.isOn {
             bill.remindDate = remindDatePicker.date
+            bill.sheduleReminder(for: remindDatePicker.date) { [weak self] (bill) in
+                if bill.notificationID == nil {
+                    self?.presentNeedAuthorizationAlert()
+                }
+                Database.shared.updateAndSave(bill)
+            }
         } else {
             bill.remindDate = nil
+            bill.removeReminders()
+            Database.shared.updateAndSave(bill)
         }
-        
-        Database.shared.updateAndSave(bill)
     }
     
     @objc func cancelButtonTapped() {

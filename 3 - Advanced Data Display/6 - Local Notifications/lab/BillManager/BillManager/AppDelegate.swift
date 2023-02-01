@@ -9,9 +9,39 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let usersNotificationCenter = UNUserNotificationCenter.current()
+        
+        let remindToPayAction = UNNotificationAction(identifier: Bill.remindActionID, title: "Pay Bill")
+        let markAsPaidAction = UNNotificationAction(identifier: Bill.markAsPaid, title: "Mark as paid", options: [.authenticationRequired])
+        
+        let alarmCategory = UNNotificationCategory(identifier: Bill.notificationCategoryID, actions: [remindToPayAction, markAsPaidAction], intentIdentifiers: [])
+        
+        usersNotificationCenter.setNotificationCategories([alarmCategory])
+        usersNotificationCenter.delegate = self
+        
         
         return true
+    }
+        
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let notificaitonID = response.notification.request.identifier
+        
+        if var bill = Database().getBill(forNotificationID: notificaitonID) {
+            if let dueDate = bill.dueDate {
+                bill.sheduleReminder(for: dueDate, scheduledBill: { bill in
+                    if bill.dueDate == nil {
+                        print("Can't schedule bill because notification permissions were revoked.")
+                    }
+                })
+            }
+        }
+        
+        completionHandler()
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+            completionHandler([.list, .banner, .sound])
     }
     
     // MARK: UISceneSession Lifecycle

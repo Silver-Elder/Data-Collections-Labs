@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Kqf-38-p8G">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Order" id="Kqf-38-p8G">
                                 <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kqf-38-p8G" id="jVj-nz-2K2">
@@ -53,7 +53,7 @@
             </objects>
             <point key="canvasLocation" x="-1212" y="-832"/>
         </scene>
-        <!--Categories-->
+        <!--Italianos Diner-->
         <scene sceneID="E3I-J3-eo8">
             <objects>
                 <tableViewController id="L0K-ua-2oM" customClass="CategoritesTableViewController" customModule="Restaurant" customModuleProvider="target" sceneMemberID="viewController">
@@ -70,7 +70,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="XCf-pI-ysH" kind="show" identifier="To Menu" trigger="accessoryAction" id="omA-Jl-Wph"/>
+                                    <segue destination="XCf-pI-ysH" kind="show" destinationCreationSelector="toMenu:sender:" id="Uc0-1H-NbH"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -79,7 +79,7 @@
                             <outlet property="delegate" destination="L0K-ua-2oM" id="Q7M-CE-vea"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Categories" largeTitleDisplayMode="always" id="nyo-7c-TQG"/>
+                    <navigationItem key="navigationItem" title="Italianos Diner" largeTitleDisplayMode="always" id="nyo-7c-TQG"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hEA-yR-X9d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -111,13 +111,13 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Dhb-O5-enX">
                                             <rect key="frame" x="132" y="41.666666666666657" width="225" height="49"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D9F-Rz-bqC">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D9F-Rz-bqC">
                                                     <rect key="frame" x="0.0" y="0.0" width="225" height="28.666666666666668"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wKM-ln-3ic">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wKM-ln-3ic">
                                                     <rect key="frame" x="0.0" y="28.666666666666664" width="225" height="20.333333333333336"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>

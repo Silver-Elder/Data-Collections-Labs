@@ -8,38 +8,78 @@
 import UIKit
 
 class MenuTableViewController: UITableViewController {
-
+    
+    
+    
+    init?(coder: NSCoder, category: String) {
+        self.category = category
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    var category: String = ""
+    var menuItems = [MenuItem]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        if menuItems.isEmpty {
+            Task {
+                do {
+                    menuItems = try await APIController().fetchMenu(filterBy: category)
+                    tableView.reloadData()
+                } catch {
+                    print(error)
+                }
+            }
+        }
+        
     }
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return menuItems.count > 0 ? menuItems.count : 1
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Menu Item", for: indexPath) as! MenuTableViewCell
+        
+        if !menuItems.isEmpty {
+            let menuItem = menuItems[indexPath.row]
+            
+            cell.menuItemTitle.text = menuItem.title
+            cell.menuItemDescription.text = menuItem.price.formatted(.currency(code: "usd"))
+            
+            Task {
+                do {
+                    let photo = try await APIController().fetchPhoto(from: menuItem.image)
+                    cell.menuPhoto.image = photo
+                } catch {
+                    print(error)
+                }
+            }
+        } else {
+            cell.menuItemTitle.text = "More to come!"
+            cell.menuItemDescription.text = ""
+        }
 
         return cell
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if !menuItems.isEmpty {
+//            YourOrderTableViewController().orders.append(menuItems[indexPath.row])
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 
     /*
     // Override to support conditional editing of the table view.

@@ -53,6 +53,7 @@ class StoreItemListTableViewController: UITableViewController {
         
         cell.artist = item.artistName
         
+        cell.artworkImage = nil
         // Book Prompt: Initialize a network task to fetch the item's artwork keeping track of the task in imageLoadTasks so they can be cancelled if the cell will not be shown after the task completes.
         
         // if successful, set the cell.artworkImage using the returned image
@@ -63,7 +64,7 @@ class StoreItemListTableViewController: UITableViewController {
                 imageLoadTasks[indexPath] = nil
                 // Once this task is complete, this line of code removes it from the list of pending tasks
             } catch {
-                cell.artworkImage = nil
+                
             }
         }
         

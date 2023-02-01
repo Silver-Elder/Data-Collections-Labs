@@ -14,9 +14,14 @@ import UIKit
         
         enum CodingKeys: String, CodingKey {
             case categories
+            
         }
     }
     
+    struct MenuItems: Codable {
+        var items: [MenuItem]
+    }
+
     struct MenuItem: Codable {
         var category: String
         var id: Int
@@ -57,8 +62,16 @@ import UIKit
             preparationTime = try values.decode(Int.self, forKey: CodingKeys.preparationTime)
         }
     }
-    
-    struct Order {
-        var order: [MenuItem]
+
+    struct Order: Codable {
+        var menuItems: [MenuItem]
+    }
+
+    struct OrderResponse: Codable {
+        let prepTime: Int
+        
+        enum CodingKeys: String, CodingKey {
+            case prepTime = "preparation_time"
+        }
     }
 

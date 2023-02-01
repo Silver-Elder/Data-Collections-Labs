@@ -18,16 +18,17 @@ class BillListTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+//        testSetReminder()
         navigationItem.leftBarButtonItem = editButtonItem
         
         dataSource = SwipeableDataSource(tableView: tableView) { tableView, indexPath, bill in
             let cell = tableView.dequeueReusableCell(withIdentifier: "BillCell", for: indexPath)
             
-            let bill = Database.shared.bills[indexPath.row]
+//            let bill = Database.shared.bills[indexPath.row]
             
             var content = cell.defaultContentConfiguration()
             content.text = bill.payee
-            content.secondaryText = String(format: "%@ - Due: %@", arguments: [(bill.amount ?? 0).formatted(.currency(code: "usd")), bill.formattedDueDate])
+            content.secondaryText = String(format: "%@ - Due: %@", arguments: [(bill.amountDue ?? 0).formatted(.currency(code: "usd")), bill.formattedDueDate])
             cell.contentConfiguration = content
             
             return cell
@@ -73,6 +74,55 @@ class BillListTableViewController: UITableViewController {
             billDetailTableViewController?.bill = Database.shared.bills[indexPath.row]
         }
     }
+    
+    /*
+    func testSetReminder() {
+        let scheduledBill: (Bill) -> Void = { bill in
+            print(bill.remindDate)
+            print(bill.notificationID)
+            
+        }
+        let scheduledDate = Date().addingTimeInterval(5)
+        var updatedBill = Bill()
+        
+        updatedBill.removeReminders() // Removes all previous reminders
+        
+        updatedBill.askForAuthorization { (authorized) in
+            guard authorized else {
+                DispatchQueue.main.async {
+                    scheduledBill(updatedBill)
+                }
+
+                return
+            }
+
+           let reminderContent = UNMutableNotificationContent()
+            reminderContent.title = "Bill Reminder"
+            reminderContent.body = String("$\(updatedBill.amountDue?.formatted()) is due to \(updatedBill.payee) on \(updatedBill.dueDate)")
+            reminderContent.categoryIdentifier = Bill.notificationCategoryID
+
+            let triggerDateComponents = Calendar.current.dateComponents([.second, .minute, .hour, .day, .month, .year], from: scheduledDate)
+            let dateTrigger = UNCalendarNotificationTrigger(dateMatching: triggerDateComponents, repeats: false)
+
+            updatedBill.notificationID = UUID().uuidString
+
+            let requestPermissionToShowUpdate = UNNotificationRequest(identifier: updatedBill.notificationID!, content: reminderContent, trigger: dateTrigger)
+
+            UNUserNotificationCenter.current().add(requestPermissionToShowUpdate) { (error: Error?) in
+                DispatchQueue.main.async {
+                    if let error = error {
+                        print(error.localizedDescription)
+                        scheduledBill(updatedBill)
+                    } else {
+                        updatedBill.remindDate = scheduledDate
+                        scheduledBill(updatedBill)
+                    }
+                }
+            }
+        }
+        
+    }
+     */
     
     @IBAction func unwindFromBillDetail(segue: UIStoryboardSegue) { }
 }

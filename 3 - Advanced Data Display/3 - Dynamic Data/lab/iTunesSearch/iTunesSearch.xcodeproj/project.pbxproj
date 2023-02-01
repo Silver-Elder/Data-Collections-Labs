@@ -20,6 +20,7 @@
 		18A6053723CFABDC002037CA /* StoreItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A6053623CFABDC002037CA /* StoreItemController.swift */; };
 		9D4AE6CC2982E470005A691A /* ItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4AE6CB2982E470005A691A /* ItemCollectionViewCell.swift */; };
 		9D4AE6CE2982E94E005A691A /* ItemDisplaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4AE6CD2982E94E005A691A /* ItemDisplaying.swift */; };
+		9D4AE6D029880C98005A691A /* SearchScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4AE6CF29880C98005A691A /* SearchScope.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		18A6053623CFABDC002037CA /* StoreItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemController.swift; sourceTree = "<group>"; };
 		9D4AE6CB2982E470005A691A /* ItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		9D4AE6CD2982E94E005A691A /* ItemDisplaying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDisplaying.swift; sourceTree = "<group>"; };
+		9D4AE6CF29880C98005A691A /* SearchScope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScope.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 				18A6052523CF9803002037CA /* Assets.xcassets */,
 				18A6052723CF9803002037CA /* LaunchScreen.storyboard */,
 				18A6052223CF9802002037CA /* Main.storyboard */,
+				9D4AE6CF29880C98005A691A /* SearchScope.swift */,
 			);
 			path = iTunesSearch;
 			sourceTree = "<group>";
@@ -159,6 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18A6053323CF9ADA002037CA /* ItemTableViewCell.swift in Sources */,
+				9D4AE6D029880C98005A691A /* SearchScope.swift in Sources */,
 				1812E9A323F36978009BBFA7 /* StoreItemCollectionViewController.swift in Sources */,
 				18A6053523CFABBB002037CA /* StoreItem.swift in Sources */,
 				9D4AE6CC2982E470005A691A /* ItemCollectionViewCell.swift in Sources */,

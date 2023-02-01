@@ -13,7 +13,7 @@ class StoreItemContainerViewController: UIViewController, UISearchResultsUpdatin
     
     var items = [StoreItem]()
     
-    let queryOptions = ["movie", "music", "software", "ebook"]
+    let queryOptions = SearchScope.allCases.map { $0.mediaType }
     
     
     // keep track of async tasks so they can be cancelled if appropriate.
@@ -43,7 +43,7 @@ class StoreItemContainerViewController: UIViewController, UISearchResultsUpdatin
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.automaticallyShowsSearchResultsController = true
         searchController.searchBar.showsScopeBar = true
-        searchController.searchBar.scopeButtonTitles = ["Movies", "Music", "Apps", "Books"]
+        searchController.searchBar.scopeButtonTitles = SearchScope.allCases.map { $0.title }
     }
     
     func configureTableViewDataSource(_ tableView: UITableView) {

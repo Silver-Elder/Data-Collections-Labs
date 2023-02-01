@@ -67,6 +67,13 @@ class Database {
         return bill
     }
     
+    func getBill(forNotificationID: String) -> Bill? {
+        return bills.first { (bill) in
+            bill.notificationID == forNotificationID
+        }
+        
+    }
+    
     func updateAndSave(_ bill: Bill) {
         _billsLookup[bill.id] = bill
         save()
@@ -90,7 +97,7 @@ class Database {
 extension Bill: Comparable {
     static func < (lhs: Bill, rhs: Bill) -> Bool {
         func compareAmounts(_ l: Bill, _ r: Bill) -> Bool {
-            switch (l.amount, r.amount) {
+            switch (l.amountDue, r.amountDue) {
             case (let l?, let r?):
                 return l > r
             case (nil, .some(_)):
